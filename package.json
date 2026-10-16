@@ -1,0 +1,26 @@
+{
+  "name": "devup-multi-agent-reviewer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A bounded, read-only code review lab with a single-agent baseline.",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "test": "node --test tests/*.test.mts",
+    "typecheck": "tsc --noEmit",
+    "demo": "node src/demo.mts",
+    "review": "node src/cli.mts",
+    "capture": "node src/capture.mts",
+    "score": "node src/score.mts"
+  },
+  "dependencies": {
+    "@openai/agents": "0.20.0",
+    "openai": "7.2.0",
+    "zod": "4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "typescript": "5.9.3"
+  },
+  "license": "MIT"
+}
