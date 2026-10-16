@@ -1,0 +1,102 @@
+{
+  "correctness": {
+    "findings": [
+      {
+        "kind": "correctness",
+        "title": "Percent values are used as fractions",
+        "explanation": "The contract uses 20 for 20%. With the new formula, discountedTotal(10000, 20) returns -190000 instead of 8000.",
+        "verification": "Add assert.equal(discountedTotal(10000, 20), 8000) and run it locally.",
+        "evidence": [
+          {
+            "path": "src/pricing.mjs",
+            "side": "after",
+            "startLine": 2,
+            "endLine": 2,
+            "quote": "  return Math.round(subtotalCents * (1 - discountPercent));"
+          }
+        ]
+      }
+    ]
+  },
+  "tests": {
+    "findings": [
+      {
+        "kind": "test_gap",
+        "title": "The only supplied test uses zero discount",
+        "explanation": "The existing zero-discount assertion passes with both formulas. It does not exercise the percentage scaling changed in this patch.",
+        "verification": "Add nonzero-discount cases such as 20 and boundary values 0 and 100.",
+        "evidence": [
+          {
+            "path": "src/pricing.mjs",
+            "side": "after",
+            "startLine": 2,
+            "endLine": 2,
+            "quote": "  return Math.round(subtotalCents * (1 - discountPercent));"
+          },
+          {
+            "path": "tests/pricing.test.mjs",
+            "side": "after",
+            "startLine": 3,
+            "endLine": 3,
+            "quote": "assert.equal(discountedTotal(10000, 0), 10000);"
+          }
+        ]
+      }
+    ]
+  },
+  "single": {
+    "findings": [
+      {
+        "kind": "correctness",
+        "title": "Percent values are used as fractions",
+        "explanation": "The contract uses 20 for 20%. With the new formula, discountedTotal(10000, 20) returns -190000 instead of 8000.",
+        "verification": "Add assert.equal(discountedTotal(10000, 20), 8000) and run it locally.",
+        "evidence": [
+          {
+            "path": "src/pricing.mjs",
+            "side": "after",
+            "startLine": 2,
+            "endLine": 2,
+            "quote": "  return Math.round(subtotalCents * (1 - discountPercent));"
+          }
+        ]
+      },
+      {
+        "kind": "test_gap",
+        "title": "The only supplied test uses zero discount",
+        "explanation": "The existing zero-discount assertion passes with both formulas. It does not exercise the percentage scaling changed in this patch.",
+        "verification": "Add nonzero-discount cases such as 20 and boundary values 0 and 100.",
+        "evidence": [
+          {
+            "path": "src/pricing.mjs",
+            "side": "after",
+            "startLine": 2,
+            "endLine": 2,
+            "quote": "  return Math.round(subtotalCents * (1 - discountPercent));"
+          },
+          {
+            "path": "tests/pricing.test.mjs",
+            "side": "after",
+            "startLine": 3,
+            "endLine": 3,
+            "quote": "assert.equal(discountedTotal(10000, 0), 10000);"
+          }
+        ]
+      }
+    ]
+  },
+  "adjudicator": {
+    "decisions": [
+      {
+        "candidateId": "C001",
+        "decision": "keep",
+        "reason": "Consistent with the supplied percent contract; confirm with the proposed assertion."
+      },
+      {
+        "candidateId": "C002",
+        "decision": "keep",
+        "reason": "The supplied test does not cover the changed nonzero-discount behavior."
+      }
+    ]
+  }
+}

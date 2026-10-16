@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "source": "fixture",
+  "base": "0000000000000000000000000000000000000000",
+  "head": "1111111111111111111111111111111111111111",
+  "files": [
+    {
+      "path": "src/quantity.mjs",
+      "before": "export function lineTotal(unitPriceCents, quantity) {\n  if (!Number.isInteger(quantity) || quantity < 1) throw new Error('INVALID_QUANTITY');\n  return unitPriceCents * quantity;\n}\n",
+      "after": "export function lineTotal(unitPriceCents, quantity) {\n  return unitPriceCents * quantity;\n}\n",
+      "diff": "--- a/src/quantity.mjs\n+++ b/src/quantity.mjs\n@@ -1,4 +1,3 @@\n export function lineTotal(unitPriceCents, quantity) {\n-  if (!Number.isInteger(quantity) || quantity < 1) throw new Error('INVALID_QUANTITY');\n   return unitPriceCents * quantity;\n }\n"
+    },
+    {
+      "path": "tests/quantity.test.mjs",
+      "before": "import { strict as assert } from 'node:assert';\nimport { lineTotal } from '../src/quantity.mjs';\nassert.equal(lineTotal(500, 2), 1000);\n",
+      "after": "import { strict as assert } from 'node:assert';\nimport { lineTotal } from '../src/quantity.mjs';\nassert.equal(lineTotal(500, 2), 1000);\n",
+      "diff": ""
+    },
+    {
+      "path": "CONTRACT.md",
+      "before": "Quantity must be a positive integer. Reject invalid quantities by throwing.\n",
+      "after": "Quantity must be a positive integer. Reject invalid quantities by throwing.\n",
+      "diff": ""
+    }
+  ]
+}

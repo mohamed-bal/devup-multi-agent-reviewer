@@ -1,0 +1,29 @@
+{
+  "origin": "human-authored-rubric",
+  "cases": {
+    "discount-regression": {
+      "expectedIssueIds": [
+        "discount-percent-scaling",
+        "nonzero-discount-test-gap"
+      ],
+      "notes": [
+        "Treat a correctness finding and the specific missing regression test as two categories; apply the same rubric to both modes."
+      ]
+    },
+    "clean-refactor": {
+      "expectedIssueIds": [],
+      "notes": [
+        "No introduced bug is expected. Unrelated pre-existing validation debt is out of scope."
+      ]
+    },
+    "removed-validation": {
+      "expectedIssueIds": [
+        "removed-quantity-validation",
+        "invalid-quantity-test-gap"
+      ],
+      "notes": [
+        "Cite the deleted guard on the before side, or the changed function area."
+      ]
+    }
+  }
+}

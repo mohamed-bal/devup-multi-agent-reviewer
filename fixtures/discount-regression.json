@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "source": "fixture",
+  "base": "0000000000000000000000000000000000000000",
+  "head": "1111111111111111111111111111111111111111",
+  "files": [
+    {
+      "path": "src/pricing.mjs",
+      "before": "export function discountedTotal(subtotalCents, discountPercent) {\n  return Math.round(subtotalCents * (100 - discountPercent) / 100);\n}\n",
+      "after": "export function discountedTotal(subtotalCents, discountPercent) {\n  return Math.round(subtotalCents * (1 - discountPercent));\n}\n",
+      "diff": "--- a/src/pricing.mjs\n+++ b/src/pricing.mjs\n@@ -1,3 +1,3 @@\n export function discountedTotal(subtotalCents, discountPercent) {\n-  return Math.round(subtotalCents * (100 - discountPercent) / 100);\n+  return Math.round(subtotalCents * (1 - discountPercent));\n }\n"
+    },
+    {
+      "path": "tests/pricing.test.mjs",
+      "before": "import { strict as assert } from 'node:assert';\nimport { discountedTotal } from '../src/pricing.mjs';\nassert.equal(discountedTotal(10000, 0), 10000);\n",
+      "after": "import { strict as assert } from 'node:assert';\nimport { discountedTotal } from '../src/pricing.mjs';\nassert.equal(discountedTotal(10000, 0), 10000);\n",
+      "diff": ""
+    },
+    {
+      "path": "CONTRACT.md",
+      "before": "# Pricing contract\nAmounts are integer cents. discountPercent is a number from 0 to 100.\nA 20 percent discount on 10000 cents must return 8000 cents.\nRound the final amount to the nearest integer cent.\n",
+      "after": "# Pricing contract\nAmounts are integer cents. discountPercent is a number from 0 to 100.\nA 20 percent discount on 10000 cents must return 8000 cents.\nRound the final amount to the nearest integer cent.\n",
+      "diff": ""
+    }
+  ]
+}
