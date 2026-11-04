@@ -71,6 +71,28 @@ Draft saved to out/demo/review.md and review.json.
 
 **Prefer to inspect before running?** Open the shipped [Markdown example](https://github.com/mohamed-bal/devup-multi-agent-reviewer/blob/main/examples/scripted-review.md) or [JSON packet](https://github.com/mohamed-bal/devup-multi-agent-reviewer/blob/main/examples/scripted-review.json).
 
+### Inspect the generated reports
+
+After running `npm run demo`, you can inspect the generated review artifacts directly.
+
+**Windows PowerShell:**
+
+```powershell
+Get-Content out/demo/review.md
+Get-Content out/demo/review.json
+```
+
+**Linux / macOS:**
+
+```bash
+cat out/demo/review.md
+cat out/demo/review.json
+```
+
+The Markdown file contains the human-readable review draft. The JSON file preserves the structured candidates, decisions, snapshot metadata, and demonstration metrics.
+
+**Important:** The offline demonstration uses scripted reviewer outputs. It does not make live AI requests or establish real-world review accuracy. Use the live-review workflow below to evaluate actual model behavior.
+
 ## How it works
 
 <p align="center">
